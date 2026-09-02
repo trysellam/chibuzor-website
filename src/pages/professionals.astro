@@ -1,0 +1,161 @@
+---
+// src/pages/professionals.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="For Professionals | Chibuzor Mordi, The Income Architect"
+  description="Diagnose the leak. Build the system. Grow without guessing."
+>
+  <div class="wrap breadcrumb">
+    <a href="/">Home</a> <span>&rsaquo;</span> <span class="current">For Professionals</span>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>You are good at your work. Your income does not reflect it.</h1>
+      <p class="sub">Diagnose the leak. Build the system. Grow without guessing.</p>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap proof-grid">
+      <a class="proof-card" href="https://pricely.thesystemscircle.com" target="_blank" rel="noopener noreferrer">
+        <h3>Pricely</h3>
+        <p>See the gap between what you charge and what your work is worth.</p>
+        <span class="link">Try Pricely &rarr;</span>
+      </a>
+      <a class="proof-card" href="/case-studies/jasmine">
+        <h3>Jasmine's Story</h3>
+        <p>How she grew her monthly income by 40 percent.</p>
+        <span class="link">Read the case study &rarr;</span>
+      </a>
+      <div class="proof-card no-link">
+        <h3>Financial OS</h3>
+        <p>The system I built for professionals to manage their income.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="diagnostic-block">
+    <div class="wrap">
+      <h2>Find where your income is leaking.</h2>
+      <p>In two minutes, you will get clarity on where the leak is.</p>
+      <a href="/diagnostic" class="btn-primary">Take the Diagnostic &rarr;</a>
+    </div>
+  </section>
+
+  <section class="ladder">
+    <div class="wrap">
+      <div class="ladder-item">
+        <span class="num">1</span>
+        <div>
+          <h3>The Income Blueprint</h3>
+          <p>One session. I map your income and hand you a written plan.</p>
+        </div>
+      </div>
+      <div class="ladder-item">
+        <span class="num">2</span>
+        <div>
+          <h3>Revenue OS, Standard</h3>
+          <p>Six weeks. I build your full income system with you.</p>
+        </div>
+      </div>
+      <div class="ladder-item">
+        <span class="num">3</span>
+        <div>
+          <h3>Revenue OS, Scale</h3>
+          <p>The same build, with automation added so it runs without you.</p>
+        </div>
+      </div>
+      <div class="ladder-item">
+        <span class="num">4</span>
+        <div>
+          <h3>The Income Engine</h3>
+          <p>A done-for-you automation build for client-facing service businesses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <p>Every quarter, I set aside 10% of what LinkedIn generates to help another creator get ahead. A laptop. A course. Whatever moves their work forward.</p>
+      <a href="#" class="link">Learn about the Creator Reinvestment Initiative &rarr;</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 20px 0 0; font-size: 13px; color: var(--warm-white-muted); }
+  .breadcrumb a { text-decoration: none; color: var(--warm-white-dim); }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb .current { color: var(--gold); }
+
+  .hero { padding: 64px 0 56px; text-align: center; border-bottom: 1px solid var(--charcoal-mid); }
+  .hero h1 { font-size: clamp(28px, 4.5vw, 40px); max-width: 640px; margin: 0 auto 16px; }
+  .hero .sub { font-size: 16px; color: var(--warm-white-dim); }
+
+  .proof { padding: 56px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .proof-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  .proof-card {
+    flex: 1;
+    min-width: 220px;
+    background: var(--charcoal-light);
+    border: 1px solid var(--charcoal-mid);
+    border-radius: 3px;
+    padding: 24px;
+    text-decoration: none;
+    color: var(--warm-white);
+    transition: border-color 0.2s ease;
+  }
+  .proof-card:hover { border-color: var(--gold-dim); }
+  .proof-card.no-link { cursor: default; }
+  .proof-card h3 { font-size: 17px; margin-bottom: 8px; }
+  .proof-card p { font-size: 14px; color: var(--warm-white-dim); margin-bottom: 12px; }
+  .proof-card .link { font-size: 13px; color: var(--gold); }
+
+  .diagnostic-block {
+    padding: 56px 0;
+    text-align: center;
+    background: var(--charcoal-light);
+    border-bottom: 1px solid var(--charcoal-mid);
+  }
+  .diagnostic-block h2 { font-size: 26px; margin-bottom: 12px; }
+  .diagnostic-block p { color: var(--warm-white-dim); margin-bottom: 28px; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 15px 30px;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+  .ladder { padding: 56px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .ladder-item {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--charcoal-mid);
+  }
+  .ladder-item:last-child { border-bottom: 1px solid var(--charcoal-mid); }
+  .num {
+    width: 34px; height: 34px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 14px;
+  }
+  .ladder-item h3 { font-size: 17px; margin-bottom: 6px; }
+  .ladder-item p { font-size: 14px; color: var(--warm-white-dim); }
+
+  .closing { padding: 56px 0; text-align: center; }
+  .closing p { max-width: 480px; margin: 0 auto 16px; color: var(--warm-white-dim); font-size: 15px; }
+  .closing .link { font-size: 14px; color: var(--gold); text-decoration: none; }
+</style>
