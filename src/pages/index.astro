@@ -1,0 +1,140 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Chibuzor Mordi | The Income Architect"
+  description="I build systems for professionals and businesses who can't afford to guess."
+>
+  <section class="hero">
+    <div class="wrap">
+      <h1>I build systems for <em>professionals</em> and <em>businesses</em> who can't afford to guess.</h1>
+      <p class="sub">Income that holds up. Operations that run without you in the room.</p>
+      <div class="fork">
+        <span class="fork-card primary">For Professionals <em>(coming soon)</em></span>
+        <span class="fork-card">For Businesses <em>(coming soon)</em></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="identity">
+    <div class="wrap">
+      <p class="identity-name">Chibuzor Mordi. The Income Architect.</p>
+      <p class="identity-line">
+        I design and build the systems behind income and operations, then leave something that keeps working after I'm gone.
+      </p>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap proof-grid">
+      <div class="proof-col">
+        <h3>For Professionals</h3>
+        <a class="proof-item" href="https://pricely.thesystemscircle.com" target="_blank" rel="noopener noreferrer">
+          <strong>Pricely</strong> &mdash; shows you the gap between what you charge and what your work is worth.
+        </a>
+        <a class="proof-item" href="/case-studies/jasmine">
+          <strong>Financial OS</strong> &mdash; the system I built for professionals to manage their income.
+        </a>
+      </div>
+      <div class="proof-col">
+        <h3>For Businesses</h3>
+        <a class="proof-item" href="/portfolio-site">
+          <strong>SpinStrip</strong> &mdash; the operational system a 32-service product team runs on daily.
+        </a>
+        <a class="proof-item" href="/portfolio-site">
+          <strong>Cosmotran Global, now Fuspay</strong> &mdash; the system and the team behind Nairabet's national rebrand.
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="systems-viz">
+    <div class="wrap">
+      <h2>A system is not a document.</h2>
+      <p>It is what happens the moment money comes in, a lead arrives, or a decision has to be made without you standing there.</p>
+      <div class="viz-placeholder">
+        <!-- TODO: the actual systems visualization design is still an open item, not built yet -->
+        Systems visualization goes here once designed.
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap closing-grid">
+      <a class="closing-card" href="/diagnostic">
+        <span class="label">Free &middot; 2 Minutes</span>
+        <span class="name">Take the Income Diagnostic &rarr;</span>
+      </a>
+      <a class="closing-card" href="/resources">
+        <span class="label">Free Tools &amp; Lessons</span>
+        <span class="name">See Resources &rarr;</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { padding: 96px 0 64px; text-align: center; }
+  .hero h1 { font-size: clamp(30px, 5vw, 46px); max-width: 780px; margin: 0 auto 20px; }
+  .hero .sub { font-size: 17px; color: var(--warm-white-dim); margin-bottom: 40px; }
+  .fork { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .fork-card {
+    padding: 18px 32px;
+    border: 1.5px solid var(--charcoal-mid);
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--warm-white);
+    transition: border-color 0.2s ease;
+  }
+  .fork-card.primary { background: var(--charcoal-light); border-color: var(--gold-dim); }
+  .fork-card:hover { border-color: var(--gold); }
+
+  .identity { padding: 40px 0; border-top: 1px solid var(--charcoal-mid); text-align: center; }
+  .identity-name { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 10px; }
+  .identity-line { color: var(--warm-white-dim); font-size: 15px; max-width: 520px; margin: 0 auto; }
+
+  .proof { padding: 56px 0; border-top: 1px solid var(--charcoal-mid); }
+  .proof-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+  .proof-col { flex: 1; min-width: 260px; }
+  .proof-col h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 16px; }
+  .proof-item {
+    display: block;
+    text-decoration: none;
+    color: var(--warm-white-dim);
+    font-size: 14px;
+    padding: 14px 0;
+    border-top: 1px solid var(--charcoal-mid);
+  }
+  .proof-item strong { color: var(--warm-white); }
+
+  .systems-viz { padding: 64px 0; border-top: 1px solid var(--charcoal-mid); text-align: center; }
+  .systems-viz h2 { font-size: 26px; margin-bottom: 14px; }
+  .systems-viz p { color: var(--warm-white-dim); max-width: 480px; margin: 0 auto 32px; }
+  .viz-placeholder {
+    border: 1px dashed var(--charcoal-mid);
+    border-radius: 4px;
+    padding: 60px 20px;
+    color: var(--warm-white-muted);
+    font-size: 13px;
+  }
+
+  .closing { padding: 56px 0; border-top: 1px solid var(--charcoal-mid); }
+  .closing-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+  .closing-card {
+    flex: 1;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 22px;
+    border: 1px solid var(--charcoal-mid);
+    border-radius: 3px;
+    text-decoration: none;
+  }
+  .closing-card .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); }
+  .closing-card .name { font-size: 15px; color: var(--warm-white); }
+</style>
