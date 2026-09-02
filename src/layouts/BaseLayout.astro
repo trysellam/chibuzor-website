@@ -1,0 +1,163 @@
+---
+// src/layouts/BaseLayout.astro
+// Every page on the site uses this layout. Anything that needs to be on
+// EVERY page, Google Analytics, fonts, the nav, the footer, lives here
+// exactly once, so it can never again quietly disappear because one page
+// got rebuilt without it (which is what happened to the old plain-HTML site).
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const GA_MEASUREMENT_ID = "G-EL2FTCK2PQ";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Google Analytics: lives here once, every page that uses this layout inherits it automatically -->
+  <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+  <script define:vars={{ GA_MEASUREMENT_ID }}>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID);
+  </script>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="wrap">
+      <a href="/" class="nav-name">Chibuzor <em>Mordi</em></a>
+      <div class="nav-links">
+        <!-- Add these back once each page is actually built:
+        <a href="/professionals">For Professionals</a>
+        <a href="/businesses">For Businesses</a>
+        <a href="/resources">Resources</a>
+        <a href="/about">About</a>
+        -->
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-col">
+        <a href="https://www.linkedin.com/in/chibuzormordi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://x.com/Chibuzor_Mordi" target="_blank" rel="noopener noreferrer">X</a>
+      </div>
+      <div class="footer-col">
+        <span>&copy; Chibuzor Mordi</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --charcoal: #242323;
+    --charcoal-light: #2e2d2d;
+    --charcoal-mid: #3a3939;
+    --gold: #C9A551;
+    --gold-light: #e0bf7a;
+    --gold-dim: #6b5a30;
+    --warm-white: #F8F5EF;
+    --warm-white-dim: #c8c4bc;
+    --warm-white-muted: #837f75;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--charcoal);
+    color: var(--warm-white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  em { font-style: italic; color: var(--gold); }
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .site-nav {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--charcoal-mid);
+  }
+  .site-nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--warm-white-dim);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .site-footer {
+    border-top: 1px solid var(--charcoal-mid);
+    padding: 48px 0;
+    margin-top: 64px;
+  }
+  .site-footer .wrap {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .footer-col a {
+    text-decoration: none;
+    color: var(--warm-white-dim);
+  }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-col span { color: var(--warm-white-muted); }
+</style>
