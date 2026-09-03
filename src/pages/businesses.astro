@@ -1,0 +1,160 @@
+---
+// src/pages/businesses.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="For Businesses | Charris Global"
+  description="I design and build the operational infrastructure that lets complex work run without depending on any single person in the room."
+>
+  <div class="wrap breadcrumb">
+    <a href="/">Home</a> <span>&rsaquo;</span> <span class="current">For Businesses</span>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Your business is growing. Your systems are not keeping up.</h1>
+      <p class="sub">I design and build the operational infrastructure that lets complex work run without depending on any single person in the room.</p>
+    </div>
+  </section>
+
+  <section class="entity">
+    <div class="wrap entity-row">
+      <div class="entity-mark">CG</div>
+      <div>
+        <h2>Charris Global. Systems for Operating Businesses.</h2>
+        <p>Founded by Chibuzor Mordi, also known publicly as The Income Architect. Charris Global designs and builds the operational infrastructure behind businesses and products that cannot afford to guess.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap proof-grid">
+      <a class="proof-card" href="/portfolio-site">
+        <h3>SpinStrip</h3>
+        <p>I built and run the entire operational system a 32-microservice team works on daily, spanning tech, finance, sales, and operations. Ongoing.</p>
+        <span class="link">See the system &rarr;</span>
+      </a>
+      <a class="proof-card" href="/portfolio-site">
+        <h3>Cosmotran Global, now Fuspay</h3>
+        <p>I designed the operational structure behind Nairabet's national rebrand, then built and managed the team that delivered it end to end, from planning through field execution.</p>
+        <span class="link">See the system &rarr;</span>
+      </a>
+      <div class="proof-card pending">
+        <h3>Next case study</h3>
+        <p>Sales systems work, once it is ready to be public.</p>
+        <span class="status">Pending</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="domains">
+    <div class="wrap">
+      <h2>What Charris Global builds</h2>
+      <div class="domains-grid">
+        <div class="domain-card">
+          <h3>Tech Infrastructure</h3>
+          <p>The operational system behind a complex, multi-team product, so shipping does not depend on one person holding the whole picture.</p>
+        </div>
+        <div class="domain-card">
+          <h3>Campaign Execution</h3>
+          <p>The structure and the team behind large-scale execution, from planning through delivery.</p>
+        </div>
+        <div class="domain-card">
+          <h3>Sales Systems</h3>
+          <p>The structure, the ERP, and the lead systems behind a sales team that needs to run without guesswork.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="discovery">
+    <div class="wrap">
+      <h2>Let's talk about what you're building.</h2>
+      <p>Book a call to see whether Charris Global is the right fit for your operations.</p>
+      <a href="https://calendar.app.google/Sd9xBX5MjDQH9FgL8" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a Discovery Call &rarr;</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 20px 0 0; font-size: 13px; color: var(--warm-white-muted); }
+  .breadcrumb a { text-decoration: none; color: var(--warm-white-dim); }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb .current { color: var(--gold); }
+
+  .hero { padding: 64px 0 56px; text-align: center; border-bottom: 1px solid var(--charcoal-mid); }
+  .hero h1 { font-size: clamp(28px, 4.5vw, 40px); max-width: 680px; margin: 0 auto 16px; }
+  .hero .sub { font-size: 16px; color: var(--warm-white-dim); max-width: 520px; margin: 0 auto; }
+
+  .entity { padding: 56px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .entity-row { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+  .entity-mark {
+    width: 72px; height: 72px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .entity h2 { font-size: 20px; margin-bottom: 10px; }
+  .entity p { font-size: 15px; color: var(--warm-white-dim); max-width: 560px; }
+
+  .proof { padding: 56px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .proof-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  .proof-card {
+    flex: 1;
+    min-width: 220px;
+    background: var(--charcoal-light);
+    border: 1px solid var(--charcoal-mid);
+    border-radius: 3px;
+    padding: 24px;
+    text-decoration: none;
+    color: var(--warm-white);
+    transition: border-color 0.2s ease;
+  }
+  .proof-card:hover { border-color: var(--gold-dim); }
+  .proof-card.pending {
+    opacity: 0.7;
+    background: repeating-linear-gradient(45deg, var(--charcoal-light), var(--charcoal-light) 12px, var(--charcoal) 12px, var(--charcoal) 24px);
+  }
+  .proof-card h3 { font-size: 16px; margin-bottom: 8px; }
+  .proof-card p { font-size: 13px; color: var(--warm-white-dim); line-height: 1.6; margin-bottom: 12px; }
+  .proof-card .link { font-size: 13px; color: var(--gold); }
+  .proof-card .status {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--warm-white-muted);
+    border: 1px solid var(--charcoal-mid);
+    border-radius: 10px;
+    padding: 3px 10px;
+  }
+
+  .domains { padding: 56px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .domains h2 { font-size: 24px; margin-bottom: 28px; text-align: center; }
+  .domains-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  .domain-card {
+    flex: 1;
+    min-width: 220px;
+    border: 1px solid var(--charcoal-mid);
+    border-radius: 3px;
+    padding: 24px;
+  }
+  .domain-card h3 { font-size: 15px; color: var(--gold); margin-bottom: 10px; }
+  .domain-card p { font-size: 13px; color: var(--warm-white-dim); line-height: 1.6; }
+
+  .discovery { padding: 64px 0; text-align: center; }
+  .discovery h2 { font-size: 26px; margin-bottom: 12px; }
+  .discovery p { color: var(--warm-white-dim); margin-bottom: 28px; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 15px 30px;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+</style>
