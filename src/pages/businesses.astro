@@ -20,7 +20,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="entity">
     <div class="wrap entity-row">
-      <div class="entity-mark">CG</div>
+      <img src="/images/charris-global-mark.png" alt="Charris Global" class="entity-mark" />
       <div>
         <h2>Charris Global. Systems for Operating Businesses.</h2>
         <p>Founded by Chibuzor Mordi, also known publicly as The Income Architect. Charris Global designs and builds the operational infrastructure behind businesses and products that cannot afford to guess.</p>
@@ -91,12 +91,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .entity-row { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
   .entity-mark {
     width: 72px; height: 72px;
-    border: 1px solid var(--gold-dim);
-    border-radius: 3px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--gold);
+    object-fit: contain;
     flex-shrink: 0;
   }
   .entity h2 { font-size: 20px; margin-bottom: 10px; }
