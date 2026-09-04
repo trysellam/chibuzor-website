@@ -19,22 +19,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <section class="proof">
-    <div class="wrap proof-grid">
-      <a class="proof-card" href="https://pricely.thesystemscircle.com" target="_blank" rel="noopener noreferrer">
-        <h3>Pricely</h3>
-        <p>See the gap between what you charge and what your work is worth.</p>
-        <span class="link">Try Pricely &rarr;</span>
-      </a>
-      <a class="proof-card" href="/case-studies/jasmine">
-        <h3>Jasmine's Story</h3>
-        <p>How she grew her monthly income by 40 percent.</p>
-        <span class="link">Read the case study &rarr;</span>
-      </a>
-      <a class="proof-card" href="https://financialos.thesystemscircle.com" target="_blank" rel="noopener noreferrer">
-        <h3>Financial OS</h3>
-        <p>The system I built for professionals to manage their income.</p>
-        <span class="link">See Financial OS &rarr;</span>
-      </a>
+    <div class="wrap">
+      <h2 class="section-label">What I've Built</h2>
+      <div class="proof-grid">
+        <a class="proof-card" href="https://pricely.thesystemscircle.com" target="_blank" rel="noopener noreferrer">
+          <h3>Pricely</h3>
+          <p>See the gap between what you charge and what your work is worth.</p>
+          <span class="link">Try Pricely &rarr;</span>
+        </a>
+        <a class="proof-card" href="https://financialos.thesystemscircle.com" target="_blank" rel="noopener noreferrer">
+          <h3>Financial OS</h3>
+          <p>The system I built for professionals to manage their income.</p>
+          <span class="link">See Financial OS &rarr;</span>
+        </a>
+        <div class="proof-card pending">
+          <h3>Daily OS</h3>
+          <p>A free daily discipline tool for professionals. Being rebuilt.</p>
+          <span class="status">Coming Back Soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap">
+      <h2 class="section-label">Case Studies</h2>
+      <div class="proof-grid">
+        <a class="proof-card" href="/case-studies/jasmine">
+          <h3>Jasmine's Story</h3>
+          <p>How she grew her monthly income by 40 percent.</p>
+          <span class="link">Read the case study &rarr;</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -97,8 +113,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .hero h1 { font-size: clamp(28px, 4.5vw, 40px); max-width: 640px; margin: 0 auto 16px; }
   .hero .sub { font-size: 16px; color: var(--warm-white-dim); }
 
-  .proof { padding: 56px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .proof { padding: 40px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .proof:last-of-type { border-bottom: 1px solid var(--charcoal-mid); }
+  .section-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 20px; }
   .proof-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  .proof-card.pending {
+    opacity: 0.7;
+    background: repeating-linear-gradient(45deg, var(--charcoal-light), var(--charcoal-light) 12px, var(--charcoal) 12px, var(--charcoal) 24px);
+  }
+  .proof-card .status {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--warm-white-muted);
+    border: 1px solid var(--charcoal-mid);
+    border-radius: 10px;
+    padding: 3px 10px;
+  }
   .proof-card {
     flex: 1;
     min-width: 220px;
