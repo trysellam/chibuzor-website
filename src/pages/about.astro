@@ -12,24 +12,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 
   <section class="about-body">
-    <div class="wrap">
-      <p class="lede">You already know your work is good. The problem is what happens around it.</p>
+    <div class="wrap about-grid">
+      <div class="about-text">
+        <p class="lede">You already know your work is good. The problem is what happens around it.</p>
 
-      <p>For professionals, that often means charging less than you are worth, or growing without a system to hold the growth. For businesses, it means operations that depend on one person remembering how everything works.</p>
+        <p>For professionals, that often means charging less than you are worth, or growing without a system to hold the growth. For businesses, it means operations that depend on one person remembering how everything works.</p>
 
-      <p>I am Chibuzor Mordi. I have spent years solving both, because they are the same problem in different clothes. Something valuable, running without a system behind it.</p>
+        <p>I am Chibuzor Mordi. I have spent years solving both, because they are the same problem in different clothes. Something valuable, running without a system behind it.</p>
 
-      <p>I started building systems in 2019, under Charris Global. I built the operational system a 32-service product team runs on daily. I designed and led the execution behind a national rebrand. I built merchant acquisition systems, and the teams that run them.</p>
+        <p>I started building systems in 2019, under Charris Global. I built the operational system a 32-service product team runs on daily. I designed and led the execution behind a national rebrand. I built merchant acquisition systems, and the teams that run them.</p>
 
-      <p>More recently, I turned that same thinking toward professionals directly. Pricely shows you the gap between what you charge and what your work is worth. Financial OS tells you what to do with every income you earn once it arrives.</p>
+        <p>More recently, I turned that same thinking toward professionals directly. Pricely shows you the gap between what you charge and what your work is worth. Financial OS tells you what to do with every income you earn once it arrives.</p>
 
-      <p>Every system I teach, I have built and used myself first, then with clients, then in public where you can watch it work.</p>
+        <p>Every system I teach, I have built and used myself first, then with clients, then in public where you can watch it work.</p>
 
-      <p class="closing-line">If you are a professional, start with the free Diagnostic. If you run a business, look at what Charris Global has already built.</p>
+        <p class="closing-line">If you are a professional, start with the free Diagnostic. If you run a business, look at what Charris Global has already built.</p>
 
-      <div class="fork">
-        <a href="/professionals" class="fork-card primary">For Professionals &rarr;</a>
-        <a href="/businesses" class="fork-card">For Businesses &rarr;</a>
+        <div class="fork">
+          <a href="/professionals" class="fork-card primary">For Professionals &rarr;</a>
+          <a href="/businesses" class="fork-card">For Businesses &rarr;</a>
+        </div>
+      </div>
+      <div class="about-photo">
+        <img src="/images/chibuzor-about.jpg" alt="Chibuzor Mordi" />
       </div>
     </div>
   </section>
@@ -42,7 +47,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .breadcrumb .current { color: var(--gold); }
 
   .about-body { padding: 56px 0 72px; }
-  .about-body .wrap { max-width: 640px; }
+  .about-grid { display: flex; gap: 48px; align-items: flex-start; }
+  .about-text { flex: 1.4; max-width: 620px; }
+  .about-photo { flex: 1; max-width: 320px; }
+  .about-photo img {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid var(--charcoal-mid);
+  }
+
+  @media (max-width: 760px) {
+    .about-grid { flex-direction: column-reverse; }
+    .about-photo { max-width: 240px; margin: 0 auto; }
+  }
 
   .lede {
     font-family: 'Playfair Display', serif;
