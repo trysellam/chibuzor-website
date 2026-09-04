@@ -54,6 +54,12 @@ const GA_MEASUREMENT_ID = "G-EL2FTCK2PQ";
     </div>
   </nav>
 
+  <div class="draw-line" aria-hidden="true">
+    <span class="joint j1"></span>
+    <span class="joint j2"></span>
+    <span class="joint j3"></span>
+  </div>
+
   <main>
     <slot />
   </main>
@@ -93,6 +99,9 @@ const GA_MEASUREMENT_ID = "G-EL2FTCK2PQ";
     background: var(--charcoal);
     color: var(--warm-white);
     -webkit-font-smoothing: antialiased;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(201,165,81,0.04) 0px, rgba(201,165,81,0.04) 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(90deg, rgba(201,165,81,0.04) 0px, rgba(201,165,81,0.04) 1px, transparent 1px, transparent 40px);
   }
 
   h1, h2, h3 {
@@ -161,4 +170,48 @@ const GA_MEASUREMENT_ID = "G-EL2FTCK2PQ";
   }
   .footer-col a:hover { color: var(--gold); }
   .footer-col span { color: var(--warm-white-muted); }
+
+  /* The signature drawing-line moment: plays once per page load, then holds. */
+  .draw-line {
+    position: relative;
+    height: 1px;
+    background: var(--charcoal-mid);
+    width: 100%;
+    overflow: visible;
+  }
+  .draw-line::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 1px;
+    width: 100%;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: drawLine 1.4s ease forwards;
+  }
+  .draw-line .joint {
+    position: absolute;
+    top: -2.5px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0;
+    animation: appearJoint 0.35s ease forwards;
+  }
+  .draw-line .j1 { left: 20%; animation-delay: 0.4s; }
+  .draw-line .j2 { left: 55%; animation-delay: 0.85s; }
+  .draw-line .j3 { left: 85%; animation-delay: 1.25s; }
+
+  @keyframes drawLine {
+    to { transform: scaleX(1); }
+  }
+  @keyframes appearJoint {
+    to { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .draw-line::before { animation: none; transform: scaleX(1); }
+    .draw-line .joint { animation: none; opacity: 1; }
+  }
 </style>
