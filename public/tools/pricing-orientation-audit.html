@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pricing Orientation Audit | The Income Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #242323;
+    --charcoal-light: #2e2d2d;
+    --charcoal-mid: #3a3939;
+    --gold: #C9A551;
+    --gold-light: #e0bf7a;
+    --gold-dim: #6b5a30;
+    --warm-white: #F8F5EF;
+    --warm-white-dim: #c8c4bc;
+    --warm-white-muted: #837f75;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--warm-white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .root {
+    min-height: 100vh;
+    background: var(--charcoal);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(201,165,81,0.045) 0px, rgba(201,165,81,0.045) 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(90deg, rgba(201,165,81,0.045) 0px, rgba(201,165,81,0.045) 1px, transparent 1px, transparent 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    background: var(--charcoal-light);
+    border: 1px solid var(--charcoal-mid);
+    border-radius: 4px;
+    padding: 48px 44px;
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .corner { position: absolute; width: 18px; height: 18px; border: 1px solid var(--gold-dim); }
+  .corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .corner.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+  .corner.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+  .corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; font-weight: 500; }
+
+  h1 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.25; margin-bottom: 16px; }
+  h1 em { font-style: italic; color: var(--gold); }
+
+  .lede { font-size: 15px; color: var(--warm-white-dim); line-height: 1.65; margin-bottom: 32px; }
+
+  button { font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; }
+
+  .btn-primary {
+    background: var(--gold); color: var(--charcoal); font-size: 14px; font-weight: 600;
+    padding: 15px 30px; border-radius: 3px; transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.4; cursor: default; transform: none; }
+  .btn-primary:focus-visible { outline: 2px solid var(--warm-white); outline-offset: 3px; }
+
+  .btn-ghost { background: transparent; color: var(--warm-white-dim); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; padding: 10px 4px; }
+
+  .section-tag { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+
+  .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+  .btn-back {
+    background: transparent; color: var(--warm-white-muted); font-size: 12px; padding: 4px 0;
+    display: flex; align-items: center; gap: 5px; transition: color 0.18s ease;
+  }
+  .btn-back:hover { color: var(--gold); }
+  .btn-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 500; margin-bottom: 14px; }
+  .section-intro { font-size: 14.5px; color: var(--warm-white-dim); line-height: 1.65; margin-bottom: 26px; }
+
+  /* Section 1: orientation cards, full text, radio-style selection */
+  .orientation-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .orientation-card {
+    text-align: left; background: var(--charcoal); border: 1.5px solid var(--charcoal-mid);
+    border-radius: 3px; padding: 18px 20px; transition: border-color 0.18s ease, background 0.18s ease;
+  }
+  .orientation-card:hover { border-color: var(--gold-dim); }
+  .orientation-card.selected { border-color: var(--gold); background: var(--charcoal-light); }
+  .orientation-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .orientation-name { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--warm-white); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .orientation-dot { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--warm-white-muted); flex-shrink: 0; }
+  .orientation-card.selected .orientation-dot { background: var(--gold); border-color: var(--gold); }
+  .orientation-desc { font-size: 13.5px; color: var(--warm-white-dim); line-height: 1.6; }
+
+  /* Section 2: calculation inputs */
+  .field-group { margin-bottom: 20px; }
+  .field-label { font-size: 13.5px; color: var(--warm-white-dim); margin-bottom: 8px; display: block; }
+  .field-input {
+    width: 100%; background: var(--charcoal); border: 1px solid var(--charcoal-mid); border-radius: 3px;
+    padding: 13px 14px; color: var(--warm-white); font-size: 15px; font-family: 'DM Sans', sans-serif;
+  }
+  .field-input:focus { outline: none; border-color: var(--gold-dim); }
+  .field-input::placeholder { color: var(--warm-white-muted); }
+
+  /* Reveal moment */
+  .reveal-wrap { text-align: center; padding: 10px 0; }
+  .reveal-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-white-muted); margin-bottom: 16px; }
+  .reveal-number {
+    font-family: 'Playfair Display', serif; font-weight: 600; color: var(--gold);
+    font-size: clamp(40px, 10vw, 60px); line-height: 1; margin-bottom: 10px;
+  }
+  .reveal-sub { font-size: 14px; color: var(--warm-white-dim); max-width: 420px; margin: 0 auto 30px; line-height: 1.6; }
+
+  .compare-row { display: flex; gap: 14px; justify-content: center; margin-bottom: 8px; }
+  .compare-col { flex: 1; max-width: 220px; border: 1px solid var(--charcoal-mid); border-radius: 3px; padding: 16px; }
+  .compare-col.highlight { border-color: var(--gold-dim); background: var(--charcoal); }
+  .compare-label { font-size: 11px; color: var(--warm-white-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .compare-value { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--warm-white); }
+  .compare-col.highlight .compare-value { color: var(--gold); }
+
+  /* Section 3: reflection */
+  textarea.field-input { resize: vertical; min-height: 110px; line-height: 1.6; }
+
+  /* Closing */
+  .closing-summary {
+    background: var(--charcoal); border: 1px solid var(--charcoal-mid); border-radius: 3px;
+    padding: 18px 20px; margin-bottom: 28px; font-size: 13.5px; color: var(--warm-white-dim); line-height: 1.7;
+  }
+  .closing-summary strong { color: var(--gold); }
+  .cta-block { border-top: 0.5px solid var(--charcoal-mid); padding-top: 26px; }
+  .cta-line { font-size: 14px; color: var(--warm-white-dim); margin-bottom: 16px; line-height: 1.6; }
+  .secondary-note { font-size: 12.5px; color: var(--warm-white-muted); margin-top: 16px; line-height: 1.6; }
+  .secondary-note a { color: var(--gold); }
+
+  .footer-row { margin-top: 22px; }
+
+  @media (prefers-reduced-motion: reduce) { .card { animation: none; } * { transition: none !important; } }
+
+  @media (max-width: 520px) {
+    .card { padding: 34px 24px; }
+    h1 { font-size: 25px; }
+    .reveal-number { font-size: 42px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="root">
+  <div class="card" id="card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div id="app"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+
+  var PRICELY_URL = "https://pricely.thesystemscircle.com";
+  var BLUEPRINT_URL = "https://chibuzormordi.com/professionals";
+  var OUTCOME_RATE = 0.075;
+
+  var ORIENTATIONS = [
+    { key: "cost", name: "Cost-Based", desc: "You price around your time, your hours, or what you spent to deliver. If it took longer, you charge more. If it took less, you charge less." },
+    { key: "market", name: "Market-Based", desc: "You price around what competitors charge, or what you have heard others in your space are getting. Your number moves to match the room." },
+    { key: "outcome", name: "Outcome-Based", desc: "You price around the specific result the client walks away with, what it is worth to their business or their life, regardless of how long it took you." }
+  ];
+
+  var state = {
+    screen: "intro",
+    orientation: null,
+    charged: "",
+    worth: "",
+    projects: "",
+    reveal: {},
+    revealed: false,
+    revealStage: "project",
+    reflection: ""
+  };
+
+  var app = document.getElementById("app");
+
+  function el(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html !== undefined) e.innerHTML = html;
+    return e;
+  }
+
+  function fmt(n) {
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+
+  function formatCommaInput(rawValue) {
+    var digits = rawValue.replace(/[^\d]/g, "");
+    if (!digits) return "";
+    return parseInt(digits, 10).toLocaleString("en-US");
+  }
+
+  function numFromFormatted(str) {
+    return parseFloat((str || "").replace(/,/g, "")) || 0;
+  }
+
+  function render() {
+    app.innerHTML = "";
+    if (state.screen === "intro") renderIntro();
+    else if (state.screen === "orientation") renderOrientation();
+    else if (state.screen === "calculation") renderCalculation();
+    else if (state.screen === "reflection") renderReflection();
+    else if (state.screen === "closing") renderClosing();
+  }
+
+  function renderIntro() {
+    app.appendChild(el("div", "eyebrow", "Free &middot; The Income Architect"));
+    app.appendChild(el("h1", "", "The Pricing <em>Orientation</em> Audit"));
+    app.appendChild(el("p", "lede", "Three short sections. Find out how you actually price, see what the gap is really costing you, and leave with one specific shift to make this month."));
+
+    var btn = el("button", "btn-primary", "Start the audit");
+    btn.onclick = function () { state.screen = "orientation"; render(); };
+    app.appendChild(btn);
+  }
+
+  function renderOrientation() {
+    var topRow = el("div", "top-row");
+    var back = el("button", "btn-back", "&larr; Back");
+    back.onclick = function () { state.screen = "intro"; render(); };
+    topRow.appendChild(back);
+    app.appendChild(topRow);
+
+    app.appendChild(el("div", "section-tag", "Section 1 of 3"));
+    app.appendChild(el("h2", "", "Which one are you?"));
+    app.appendChild(el("p", "section-intro", "Most professionals price using one of three orientations, often without realising it. Read all three, then choose the one that sounds most like you right now."));
+
+    var list = el("div", "orientation-list");
+    ORIENTATIONS.forEach(function (o) {
+      var card = el("button", "orientation-card" + (state.orientation === o.key ? " selected" : ""));
+      var name = el("div", "orientation-name");
+      var dot = el("span", "orientation-dot");
+      name.appendChild(dot);
+      name.appendChild(document.createTextNode(o.name));
+      var desc = el("div", "orientation-desc", o.desc);
+      card.appendChild(name);
+      card.appendChild(desc);
+      card.onclick = function () { state.orientation = o.key; render(); };
+      list.appendChild(card);
+    });
+    app.appendChild(list);
+
+    var next = el("button", "btn-primary", "Continue");
+    next.disabled = !state.orientation;
+    next.onclick = function () { if (state.orientation) { state.screen = "calculation"; render(); } };
+    app.appendChild(next);
+  }
+
+  function renderCalculation() {
+    var topRow = el("div", "top-row");
+    var back = el("button", "btn-back", "&larr; Back");
+    back.onclick = function () {
+      if (state.revealed) { state.revealed = false; render(); }
+      else { state.screen = "orientation"; render(); }
+    };
+    topRow.appendChild(back);
+    app.appendChild(topRow);
+
+    app.appendChild(el("div", "section-tag", "Section 2 of 3"));
+    app.appendChild(el("h2", "", "What is it costing you?"));
+
+    if (!state.revealed) {
+      app.appendChild(el("p", "section-intro", "A quick, honest calculation. Use your real numbers, not rounded, comfortable ones."));
+
+      var f1 = el("div", "field-group");
+      f1.appendChild(el("label", "field-label", "What you actually charged, on average, for your last project or client ($)"));
+      var i1 = el("input", "field-input"); i1.type = "text"; i1.inputMode = "numeric"; i1.placeholder = "e.g. 500"; i1.value = state.charged;
+      f1.appendChild(i1);
+
+      var f2 = el("div", "field-group");
+      f2.appendChild(el("label", "field-label", "What you believe that outcome was genuinely worth to them ($)"));
+      var i2 = el("input", "field-input"); i2.type = "text"; i2.inputMode = "numeric"; i2.placeholder = "e.g. 10,000"; i2.value = state.worth;
+      f2.appendChild(i2);
+
+      var f3 = el("div", "field-group");
+      f3.appendChild(el("label", "field-label", "Roughly how many projects or clients you take on in a year"));
+      var i3 = el("input", "field-input"); i3.type = "text"; i3.inputMode = "numeric"; i3.placeholder = "e.g. 12"; i3.value = state.projects;
+      f3.appendChild(i3);
+
+      app.appendChild(f1); app.appendChild(f2); app.appendChild(f3);
+
+      var revealBtn = el("button", "btn-primary", "Reveal my number");
+
+      function checkCanReveal() {
+        var ok = numFromFormatted(state.charged) >= 0 && numFromFormatted(state.worth) >= 0 && numFromFormatted(state.projects) > 0;
+        revealBtn.disabled = !ok;
+        return ok;
+      }
+
+      i1.oninput = function (e) {
+        e.target.value = formatCommaInput(e.target.value);
+        state.charged = e.target.value;
+        checkCanReveal();
+      };
+      i2.oninput = function (e) {
+        e.target.value = formatCommaInput(e.target.value);
+        state.worth = e.target.value;
+        checkCanReveal();
+      };
+      i3.oninput = function (e) {
+        e.target.value = formatCommaInput(e.target.value);
+        state.projects = e.target.value;
+        checkCanReveal();
+      };
+
+      revealBtn.onclick = function () {
+        var charged = numFromFormatted(state.charged);
+        var worth = numFromFormatted(state.worth);
+        var projects = numFromFormatted(state.projects);
+        var recommendedPerProject = worth * OUTCOME_RATE;
+        var gapPerProject = recommendedPerProject - charged;
+        var isAboveBenchmark = gapPerProject <= 0;
+        var currentAnnual = charged * projects;
+        var recommendedAnnual = recommendedPerProject * projects;
+
+        state.reveal = {
+          charged: charged,
+          worth: worth,
+          projects: projects,
+          recommendedPerProject: recommendedPerProject,
+          gapPerProject: gapPerProject,
+          isAboveBenchmark: isAboveBenchmark,
+          currentAnnual: currentAnnual,
+          recommendedAnnual: recommendedAnnual,
+          annualUpside: recommendedAnnual - currentAnnual
+        };
+        state.revealed = true;
+        state.revealStage = "project";
+        render();
+        animateReveal(state.reveal.isAboveBenchmark ? state.reveal.charged : state.reveal.recommendedPerProject, "reveal-num");
+      };
+      app.appendChild(revealBtn);
+      checkCanReveal();
+
+    } else if (state.revealStage === "project") {
+      var r = state.reveal;
+      var wrap = el("div", "reveal-wrap");
+
+      if (!r.isAboveBenchmark) {
+        wrap.appendChild(el("div", "reveal-label", "Based on the outcome, you should have charged"));
+        wrap.appendChild(el("div", "reveal-number", fmt(0))).id;
+        var num = wrap.querySelector(".reveal-number");
+        num.id = "reveal-num";
+        wrap.appendChild(el("div", "reveal-sub", "You charged " + fmt(r.charged) + " for this project."));
+      } else {
+        wrap.appendChild(el("div", "reveal-label", "Your pricing on this project"));
+        var num2 = el("div", "reveal-number", fmt(0));
+        num2.id = "reveal-num";
+        wrap.appendChild(num2);
+        wrap.appendChild(el("div", "reveal-sub",
+          "The outcome-based benchmark for this project sits at " + fmt(r.recommendedPerProject) + ". You are already pricing at or above it."
+        ));
+        var nuance = el("div", "reveal-sub");
+        nuance.style.marginTop = "-14px";
+        nuance.textContent = "That can mean two things. You are already pricing well, or the outcome value you entered does not fully capture what this project was actually worth.";
+        wrap.appendChild(nuance);
+      }
+      app.appendChild(wrap);
+
+      var toStage2 = el("button", "btn-primary", r.isAboveBenchmark ? "Continue" : "See this across a year");
+      toStage2.onclick = function () {
+        state.revealStage = "annual";
+        render();
+        if (!r.isAboveBenchmark) animateReveal(r.annualUpside, "reveal-annual-num");
+      };
+      app.appendChild(toStage2);
+
+    } else {
+      var r2 = state.reveal;
+      var wrap2 = el("div", "reveal-wrap");
+
+      if (!r2.isAboveBenchmark) {
+        wrap2.appendChild(el("div", "reveal-label", "Across a year of work"));
+        var compareRow = el("div", "compare-row");
+        var col1 = el("div", "compare-col");
+        col1.appendChild(el("div", "compare-label", "At your current rate"));
+        col1.appendChild(el("div", "compare-value", fmt(r2.currentAnnual)));
+        var col2 = el("div", "compare-col highlight");
+        col2.appendChild(el("div", "compare-label", "Pricing on the outcome"));
+        col2.appendChild(el("div", "compare-value", fmt(r2.recommendedAnnual)));
+        compareRow.appendChild(col1);
+        compareRow.appendChild(col2);
+        wrap2.appendChild(compareRow);
+
+        var upsideLine = el("div", "reveal-number");
+        upsideLine.id = "reveal-annual-num";
+        upsideLine.style.fontSize = "clamp(30px, 7vw, 42px)";
+        upsideLine.style.marginTop = "20px";
+        upsideLine.textContent = fmt(0);
+        wrap2.appendChild(upsideLine);
+        wrap2.appendChild(el("div", "reveal-sub", "more, every year, for the same amount of work."));
+      } else {
+        wrap2.appendChild(el("div", "reveal-label", "Worth knowing"));
+        wrap2.appendChild(el("div", "reveal-sub", "This audit uses a rough outcome estimate, one number, entered once. Pricely's outcome conversation goes deeper, and might reveal this project, and your next one, was worth more than you first thought."));
+      }
+      app.appendChild(wrap2);
+
+      var next = el("button", "btn-primary", "Continue");
+      next.onclick = function () { state.screen = "reflection"; render(); };
+      app.appendChild(next);
+    }
+  }
+
+  function animateReveal(target, elementId) {
+    var elNode = document.getElementById(elementId);
+    if (!elNode) return;
+    var start = null;
+    var duration = 1100;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      elNode.textContent = fmt(target * eased);
+      if (progress < 1) requestAnimationFrame(step);
+      else elNode.textContent = fmt(target);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function renderReflection() {
+    var topRow = el("div", "top-row");
+    var back = el("button", "btn-back", "&larr; Back");
+    back.onclick = function () { state.screen = "calculation"; render(); };
+    topRow.appendChild(back);
+    app.appendChild(topRow);
+
+    app.appendChild(el("div", "section-tag", "Section 3 of 3"));
+    app.appendChild(el("h2", "", "One shift to make this month."));
+    app.appendChild(el("p", "section-intro", "Not a full rebuild. One specific thing you could change in your next quote, based on what this audit just showed you."));
+
+    var field = el("div", "field-group");
+    var ta = el("textarea", "field-input");
+    ta.placeholder = "Write it here...";
+    ta.value = state.reflection;
+    ta.oninput = function (e) { state.reflection = e.target.value; };
+    field.appendChild(ta);
+    app.appendChild(field);
+
+    var next = el("button", "btn-primary", "See my results");
+    next.onclick = function () { state.screen = "closing"; render(); };
+    app.appendChild(next);
+  }
+
+  function renderClosing() {
+    var orientationName = ORIENTATIONS.find(function (o) { return o.key === state.orientation; }).name;
+
+    app.appendChild(el("div", "eyebrow", "Your Audit"));
+    app.appendChild(el("h1", "", "You price <em>" + orientationName + "</em>."));
+
+    var summary = el("div", "closing-summary");
+    if (!state.reveal.isAboveBenchmark) {
+      summary.innerHTML =
+        "What you should have charged for that project: <strong>" + fmt(state.reveal.recommendedPerProject) + "</strong>.<br>" +
+        "What that adds up to across a year: <strong>" + fmt(state.reveal.annualUpside) + "</strong> more than your current rate.";
+    } else {
+      summary.innerHTML =
+        "You charged <strong>" + fmt(state.reveal.charged) + "</strong> for that project.<br>" +
+        "The outcome-based benchmark sat at <strong>" + fmt(state.reveal.recommendedPerProject) + "</strong>. Already above it.";
+    }
+    app.appendChild(summary);
+
+    var ctaBlock = el("div", "cta-block");
+    ctaBlock.appendChild(el("p", "cta-line", "This is a small preview of what Pricely shows you on every single project, not just one."));
+
+    var priceyLink = document.createElement("a");
+    priceyLink.href = PRICELY_URL;
+    priceyLink.target = "_blank";
+    priceyLink.rel = "noopener noreferrer";
+    var priceyBtn = el("button", "btn-primary", "See Your Full Picture in Pricely");
+    priceyLink.appendChild(priceyBtn);
+    ctaBlock.appendChild(priceyLink);
+
+    var note = el("div", "secondary-note");
+    note.innerHTML = 'Want a more personalised experience? <a href="' + BLUEPRINT_URL + '">Book the Income Blueprint &rarr;</a>';
+    ctaBlock.appendChild(note);
+
+    app.appendChild(ctaBlock);
+
+    var footerRow = el("div", "footer-row");
+    var restart = el("button", "btn-ghost", "Start over");
+    restart.onclick = function () {
+      state = { screen: "intro", orientation: null, charged: "", worth: "", projects: "", reveal: {}, revealed: false, revealStage: "project", reflection: "" };
+      render();
+    };
+    footerRow.appendChild(restart);
+    app.appendChild(footerRow);
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>
