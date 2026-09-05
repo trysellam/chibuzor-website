@@ -1,0 +1,150 @@
+---
+// src/pages/resources.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Resources | Chibuzor Mordi, The Income Architect"
+  description="Free tools that let you experience the thinking behind Pricely and Financial OS before you buy, plus what's coming next."
+>
+  <div class="wrap breadcrumb">
+    <a href="/">Home</a> <span>&rsaquo;</span> <span class="current">Resources</span>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Free tools and lessons for building income systems.</h1>
+      <p class="sub">No commitment needed to start here.</p>
+    </div>
+  </section>
+
+  <section class="tools">
+    <div class="wrap">
+      <h2 class="section-label">Free Tools</h2>
+      <div class="tools-grid">
+        <a class="tool-card" href="/tools/pricing-orientation-audit">
+          <h3>The Pricing Orientation Audit</h3>
+          <p>Find out how you actually price, and feel Pricely's own gap-reveal moment firsthand.</p>
+          <span class="link">Start the audit &rarr;</span>
+        </a>
+        <a class="tool-card" href="/tools/income-engineering">
+          <h3>How to Engineer Your Income</h3>
+          <p>See the exact logic behind Financial OS, and what it means for your own numbers.</p>
+          <span class="link">See how it works &rarr;</span>
+        </a>
+        <a class="tool-card" href="/lead-magnets/income-intake.pdf">
+          <h3>The Income Intake</h3>
+          <p>The same starting picture every Revenue OS client completes before session one.</p>
+          <span class="link">Download the PDF &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="courses">
+    <div class="wrap">
+      <h2 class="section-label">Courses</h2>
+
+      <div class="course-block">
+        <div class="course-illustration" aria-hidden="true">
+          <svg viewBox="0 0 460 280" xmlns="http://www.w3.org/2000/svg">
+            <path class="beam d1" d="M 60 240 L 400 240" pathLength="400" />
+            <path class="beam d2" d="M 100 240 L 100 120" pathLength="400" />
+            <path class="beam d2" d="M 360 240 L 360 120" pathLength="400" />
+            <path class="beam d3" d="M 230 240 L 230 80" pathLength="400" />
+            <path class="beam d4" d="M 100 120 L 230 40" pathLength="400" />
+            <path class="beam d4" d="M 230 40 L 360 120" pathLength="400" />
+            <path class="beam dim d5" d="M 100 240 L 230 160" pathLength="400" />
+            <path class="beam dim d5" d="M 360 240 L 230 160" pathLength="400" />
+            <path class="beam dim d6" d="M 100 160 L 360 160" pathLength="400" />
+            <path class="beam d7" d="M 230 80 L 230 40" pathLength="400" />
+            <path class="beam dim d8" d="M 60 240 L 100 200" pathLength="400" />
+            <path class="beam dim d8" d="M 400 240 L 360 200" pathLength="400" />
+            <circle class="joint j1" cx="230" cy="40" r="4" />
+            <circle class="joint j2" cx="100" cy="120" r="4" />
+            <circle class="joint j3" cx="360" cy="120" r="4" />
+            <circle class="joint j4" cx="230" cy="160" r="4" />
+          </svg>
+        </div>
+
+        <div class="course-content">
+          <span class="eyebrow-tag">Coming Soon</span>
+          <h3>The Pricing Masterclass</h3>
+          <p>Pricely shows you the gap. This teaches you to close it, on every project, not just the one you just priced.</p>
+          <p>Five short lessons. The exact thinking behind outcome-based pricing, how to read what a client actually needs before naming a number, and how to hold your price without flinching when someone pushes back.</p>
+          <p class="not-ready">Not ready yet. In the meantime,</p>
+          <a href="https://pricely.thesystemscircle.com" target="_blank" rel="noopener noreferrer" class="link">see your own gap with Pricely &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 20px 0 0; font-size: 13px; color: var(--warm-white-muted); }
+  .breadcrumb a { text-decoration: none; color: var(--warm-white-dim); }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb .current { color: var(--gold); }
+
+  .hero { padding: 64px 0 48px; text-align: center; border-bottom: 1px solid var(--charcoal-mid); }
+  .hero h1 { font-size: clamp(28px, 4.5vw, 38px); max-width: 600px; margin: 0 auto 14px; }
+  .hero .sub { font-size: 15px; color: var(--warm-white-dim); }
+
+  .section-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 22px; }
+
+  .tools { padding: 56px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .tools-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  .tool-card {
+    flex: 1; min-width: 220px; background: var(--charcoal-light); border: 1px solid var(--charcoal-mid);
+    border-radius: 3px; padding: 24px; text-decoration: none; color: var(--warm-white);
+    transition: border-color 0.2s ease;
+  }
+  .tool-card:hover { border-color: var(--gold-dim); }
+  .tool-card h3 { font-size: 16px; margin-bottom: 8px; }
+  .tool-card p { font-size: 13px; color: var(--warm-white-dim); line-height: 1.6; margin-bottom: 14px; }
+  .tool-card .link { font-size: 13px; color: var(--gold); }
+
+  .courses { padding: 56px 0 72px; }
+
+  .course-block {
+    display: flex; gap: 40px; align-items: center; flex-wrap: wrap;
+    border: 1px solid var(--charcoal-mid); border-radius: 4px; padding: 36px;
+    background: var(--charcoal-light);
+  }
+  .course-illustration { flex: 1; min-width: 260px; max-width: 340px; }
+  .course-illustration svg { width: 100%; height: auto; overflow: visible; }
+  .course-content { flex: 1.3; min-width: 280px; }
+
+  .eyebrow-tag {
+    display: inline-block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--gold-dim); border-radius: 20px; padding: 5px 14px; margin-bottom: 16px;
+  }
+  .course-content h3 { font-size: 22px; margin-bottom: 14px; }
+  .course-content p { font-size: 14.5px; color: var(--warm-white-dim); line-height: 1.65; margin-bottom: 14px; }
+  .course-content .not-ready { margin-bottom: 6px; color: var(--warm-white-muted); font-size: 13px; }
+  .course-content .link { font-size: 14px; color: var(--gold); text-decoration: none; }
+
+  /* Architectural drawing animation, same signature as the original holding page */
+  .beam {
+    fill: none; stroke: var(--gold); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 400; stroke-dashoffset: 400; animation: draw 2.6s ease forwards;
+  }
+  .beam.dim { stroke: var(--gold-dim); }
+  .beam.d1 { animation-delay: 0s; } .beam.d2 { animation-delay: 0.3s; } .beam.d3 { animation-delay: 0.6s; }
+  .beam.d4 { animation-delay: 0.9s; } .beam.d5 { animation-delay: 1.1s; } .beam.d6 { animation-delay: 1.3s; }
+  .beam.d7 { animation-delay: 1.5s; } .beam.d8 { animation-delay: 1.7s; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  .joint { fill: var(--gold); opacity: 0; animation: appear 0.4s ease forwards; }
+  .joint.j1 { animation-delay: 1.9s; } .joint.j2 { animation-delay: 2.1s; }
+  .joint.j3 { animation-delay: 2.3s; } .joint.j4 { animation-delay: 2.5s; }
+  @keyframes appear { to { opacity: 1; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .beam, .joint { animation: none !important; stroke-dashoffset: 0 !important; opacity: 1 !important; }
+  }
+
+  @media (max-width: 700px) {
+    .course-block { flex-direction: column; text-align: left; }
+  }
+</style>
