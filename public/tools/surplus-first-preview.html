@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Engineer Your Income | The Income Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #242323; --charcoal-light: #2e2d2d; --charcoal-mid: #3a3939;
+    --gold: #C9A551; --gold-light: #e0bf7a; --gold-dim: #6b5a30;
+    --warm-white: #F8F5EF; --warm-white-dim: #c8c4bc; --warm-white-muted: #837f75;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--warm-white); -webkit-font-smoothing: antialiased; }
+  .root {
+    min-height: 100vh; background: var(--charcoal);
+    background-image: repeating-linear-gradient(0deg, rgba(201,165,81,0.045) 0px, rgba(201,165,81,0.045) 1px, transparent 1px, transparent 40px),
+                       repeating-linear-gradient(90deg, rgba(201,165,81,0.045) 0px, rgba(201,165,81,0.045) 1px, transparent 1px, transparent 40px);
+    display: flex; align-items: center; justify-content: center; padding: 32px 20px;
+  }
+  .card { position: relative; width: 100%; max-width: 660px; background: var(--charcoal-light); border: 1px solid var(--charcoal-mid); border-radius: 4px; padding: 48px 44px; animation: fadeIn 0.5s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .corner { position: absolute; width: 18px; height: 18px; border: 1px solid var(--gold-dim); }
+  .corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .corner.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+  .corner.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+  .corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; font-weight: 500; }
+  h1 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 29px; line-height: 1.25; margin-bottom: 16px; }
+  h1 em { font-style: italic; color: var(--gold); }
+  .lede { font-size: 15px; color: var(--warm-white-dim); line-height: 1.65; margin-bottom: 32px; }
+  button { font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; }
+  .btn-primary { background: var(--gold); color: var(--charcoal); font-size: 14px; font-weight: 600; padding: 15px 30px; border-radius: 3px; transition: background 0.2s ease, transform 0.15s ease; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.4; cursor: default; transform: none; }
+  .btn-ghost { background: transparent; color: var(--warm-white-dim); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; padding: 10px 4px; }
+  .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+  .btn-back { background: transparent; color: var(--warm-white-muted); font-size: 12px; padding: 4px 0; display: flex; align-items: center; gap: 5px; }
+  .btn-back:hover { color: var(--gold); }
+  .section-tag { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 500; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 500; margin-bottom: 14px; }
+  .section-intro { font-size: 14.5px; color: var(--warm-white-dim); line-height: 1.65; margin-bottom: 24px; }
+  .field-group { margin-bottom: 20px; }
+  .field-label { font-size: 13.5px; color: var(--warm-white-dim); margin-bottom: 8px; display: block; }
+  .field-input { width: 100%; background: var(--charcoal); border: 1px solid var(--charcoal-mid); border-radius: 3px; padding: 13px 14px; color: var(--warm-white); font-size: 15px; font-family: 'DM Sans', sans-serif; }
+  .field-input:focus { outline: none; border-color: var(--gold-dim); }
+  .field-input::placeholder { color: var(--warm-white-muted); }
+
+  .reveal-wrap { text-align: center; padding: 10px 0; }
+  .reveal-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-white-muted); margin-bottom: 16px; }
+  .reveal-number { font-family: 'Playfair Display', serif; font-weight: 600; color: var(--gold); font-size: clamp(46px, 11vw, 66px); line-height: 1; margin-bottom: 10px; }
+  .reveal-sub { font-size: 14px; color: var(--warm-white-dim); max-width: 460px; margin: 0 auto 20px; line-height: 1.65; }
+
+  .breakdown-list { text-align: left; margin: 24px 0; }
+  .breakdown-row { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--charcoal-mid); }
+  .breakdown-row:last-child { border-bottom: 1px solid var(--charcoal-mid); }
+  .breakdown-row.highlight .breakdown-value { color: var(--gold); font-size: 19px; }
+  .breakdown-name { color: var(--warm-white-dim); font-size: 13.5px; }
+  .breakdown-value { color: var(--warm-white); font-family: 'Playfair Display', serif; font-size: 16px; }
+
+  textarea.field-input { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+  .closing-summary { background: var(--charcoal); border: 1px solid var(--charcoal-mid); border-radius: 3px; padding: 18px 20px; margin-bottom: 28px; font-size: 13.5px; color: var(--warm-white-dim); line-height: 1.7; }
+  .closing-summary strong { color: var(--gold); }
+  .cta-block { border-top: 0.5px solid var(--charcoal-mid); padding-top: 26px; }
+  .cta-line { font-size: 14px; color: var(--warm-white-dim); margin-bottom: 16px; line-height: 1.6; }
+  .secondary-note { font-size: 12.5px; color: var(--warm-white-muted); margin-top: 16px; line-height: 1.6; }
+  .secondary-note a { color: var(--gold); }
+  .footer-row { margin-top: 22px; }
+
+  @media (max-width: 560px) { .card { padding: 34px 24px; } }
+</style>
+</head>
+<body>
+<div class="root">
+  <div class="card" id="card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div id="app"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var FINANCIALOS_URL = "https://financialos.thesystemscircle.com";
+  var BLUEPRINT_URL = "https://chibuzormordi.com/professionals";
+
+  var BASE_RATE = 20;
+  var THRESHOLD = 1000;
+  var INCREMENT_SIZE = 500;
+  var INCREMENT_AMOUNT = 2;
+  var CAP_RATE = 40;
+
+  function calcRate(income) {
+    if (income <= THRESHOLD) return BASE_RATE;
+    var increments = Math.floor((income - THRESHOLD) / INCREMENT_SIZE);
+    return Math.min(BASE_RATE + increments * INCREMENT_AMOUNT, CAP_RATE);
+  }
+
+  var state = {
+    screen: "intro",
+    income: "",
+    expensePct: "",
+    revealed: false,
+    revealStage: "rate",
+    reveal: {},
+    reflection: ""
+  };
+
+  var app = document.getElementById("app");
+
+  function el(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html !== undefined) e.innerHTML = html;
+    return e;
+  }
+  function fmt(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  function formatCommaInput(v) {
+    var digits = v.replace(/[^\d]/g, "");
+    if (!digits) return "";
+    return parseInt(digits, 10).toLocaleString("en-US");
+  }
+  function numFromFormatted(str) { return parseFloat((str || "").replace(/,/g, "")) || 0; }
+
+  function render() {
+    app.innerHTML = "";
+    if (state.screen === "intro") renderIntro();
+    else if (state.screen === "inputs") renderInputs();
+    else if (state.screen === "reflection") renderReflection();
+    else if (state.screen === "closing") renderClosing();
+  }
+
+  function renderIntro() {
+    app.appendChild(el("div", "eyebrow", "Free &middot; The Income Architect"));
+    app.appendChild(el("h1", "", "How to <em>Engineer</em> Your Income"));
+    app.appendChild(el("p", "lede", "Most advice tells you to save a fixed percentage and stops there. This shows you a smarter way, one that adjusts automatically as your income grows."));
+    var btn = el("button", "btn-primary", "See how it works");
+    btn.onclick = function () { state.screen = "inputs"; render(); };
+    app.appendChild(btn);
+  }
+
+  function renderInputs() {
+    var topRow = el("div", "top-row");
+    var back = el("button", "btn-back", "&larr; Back");
+    back.onclick = function () {
+      if (state.revealed) { state.revealed = false; state.revealStage = "rate"; render(); }
+      else { state.screen = "intro"; render(); }
+    };
+    topRow.appendChild(back);
+    app.appendChild(topRow);
+
+    if (!state.revealed) {
+      app.appendChild(el("div", "section-tag", "Section 1 of 3"));
+      app.appendChild(el("h2", "", "Your starting numbers"));
+      app.appendChild(el("p", "section-intro", "Two honest numbers. What you actually bring in, and what share of it goes toward keeping things running."));
+
+      var f1 = el("div", "field-group");
+      f1.appendChild(el("label", "field-label", "Your total monthly income ($)"));
+      var incomeInput = el("input", "field-input");
+      incomeInput.type = "text"; incomeInput.inputMode = "numeric"; incomeInput.placeholder = "e.g. 3,000";
+      incomeInput.value = state.income;
+      f1.appendChild(incomeInput);
+
+      var f2 = el("div", "field-group");
+      f2.appendChild(el("label", "field-label", "What percentage of that goes to expenses?"));
+      var expInput = el("input", "field-input");
+      expInput.type = "number"; expInput.min = "0"; expInput.max = "100"; expInput.placeholder = "e.g. 60";
+      expInput.value = state.expensePct;
+      f2.appendChild(expInput);
+
+      app.appendChild(f1); app.appendChild(f2);
+
+      var nextBtn = el("button", "btn-primary", "See my rate");
+      function checkCanReveal() {
+        var incomeOk = numFromFormatted(state.income) > 0;
+        var pct = parseFloat(state.expensePct);
+        var pctOk = !isNaN(pct) && pct >= 0 && pct <= 100;
+        nextBtn.disabled = !(incomeOk && pctOk);
+      }
+      incomeInput.oninput = function (e) {
+        e.target.value = formatCommaInput(e.target.value);
+        state.income = e.target.value;
+        checkCanReveal();
+      };
+      expInput.oninput = function (e) { state.expensePct = e.target.value; checkCanReveal(); };
+
+      nextBtn.onclick = function () {
+        var income = numFromFormatted(state.income);
+        var expenses = income * (parseFloat(state.expensePct) / 100);
+        var surplus = Math.max(income - expenses, 0);
+        var rate = calcRate(income);
+        var investment = surplus * (rate / 100);
+        var netRemaining = surplus - investment;
+
+        state.reveal = { income: income, expenses: expenses, surplus: surplus, rate: rate, investment: investment, netRemaining: netRemaining };
+        state.revealed = true;
+        state.revealStage = "rate";
+        render();
+        animateRatePercent(rate);
+      };
+      app.appendChild(nextBtn);
+      checkCanReveal();
+
+    } else if (state.revealStage === "rate") {
+      var r = state.reveal;
+      app.appendChild(el("div", "section-tag", "Section 2 of 3"));
+      app.appendChild(el("h2", "", "What you should be investing"));
+
+      var wrap = el("div", "reveal-wrap");
+      wrap.appendChild(el("div", "reveal-label", "The share of your surplus this system puts to work"));
+      var num = el("div", "reveal-number", "0%");
+      num.id = "reveal-rate";
+      wrap.appendChild(num);
+
+      wrap.appendChild(el("div", "reveal-sub",
+        "That is " + fmt(r.investment) + " of your " + fmt(r.surplus) + " surplus, every month."
+      ));
+      wrap.appendChild(el("div", "reveal-sub",
+        "This is not a fixed number. It rises automatically as your income grows, something flat percentage advice never accounts for."
+      ));
+      app.appendChild(wrap);
+
+      var next = el("button", "btn-primary", "See the full breakdown");
+      next.onclick = function () { state.revealStage = "dollars"; render(); };
+      app.appendChild(next);
+
+    } else {
+      var r2 = state.reveal;
+      app.appendChild(el("div", "section-tag", "Section 2 of 3"));
+      app.appendChild(el("h2", "", "Your monthly breakdown"));
+
+      var wrap2 = el("div", "reveal-wrap");
+
+      if (r2.surplus <= 0) {
+        wrap2.appendChild(el("div", "reveal-sub", "At this expense percentage, there is no surplus left to allocate. Worth revisiting whether that expense figure reflects what actually happens most months."));
+      } else {
+        var list = el("div", "breakdown-list");
+        var rowIncome = el("div", "breakdown-row");
+        rowIncome.appendChild(el("span", "breakdown-name", "Total income"));
+        rowIncome.appendChild(el("span", "breakdown-value", fmt(r2.income)));
+        var rowExpenses = el("div", "breakdown-row");
+        rowExpenses.appendChild(el("span", "breakdown-name", "Expenses"));
+        rowExpenses.appendChild(el("span", "breakdown-value", fmt(r2.expenses)));
+        var rowSurplus = el("div", "breakdown-row");
+        rowSurplus.appendChild(el("span", "breakdown-name", "Surplus"));
+        rowSurplus.appendChild(el("span", "breakdown-value", fmt(r2.surplus)));
+        var rowInvest = el("div", "breakdown-row highlight");
+        rowInvest.appendChild(el("span", "breakdown-name", "To Investment (" + r2.rate + "%)"));
+        rowInvest.appendChild(el("span", "breakdown-value", fmt(r2.investment)));
+        var rowNet = el("div", "breakdown-row highlight");
+        rowNet.appendChild(el("span", "breakdown-name", "Net Remaining"));
+        rowNet.appendChild(el("span", "breakdown-value", fmt(r2.netRemaining)));
+        [rowIncome, rowExpenses, rowSurplus, rowInvest, rowNet].forEach(function (row) { list.appendChild(row); });
+        wrap2.appendChild(list);
+        wrap2.appendChild(el("div", "reveal-sub", "Net Remaining is not spare cash sitting idle. It is unassigned capital, money that still needs a job. Financial OS splits it into an Emergency Reserve and an Operating Buffer automatically."));
+      }
+      app.appendChild(wrap2);
+
+      var next2 = el("button", "btn-primary", "Continue");
+      next2.onclick = function () { state.screen = "reflection"; render(); };
+      app.appendChild(next2);
+    }
+  }
+
+  function animateRatePercent(target) {
+    var elNode = document.getElementById("reveal-rate");
+    if (!elNode) return;
+    var start = null, duration = 1000;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      elNode.textContent = Math.round(target * eased) + "%";
+      if (progress < 1) requestAnimationFrame(step);
+      else elNode.textContent = target + "%";
+    }
+    requestAnimationFrame(step);
+  }
+
+  function renderReflection() {
+    var topRow = el("div", "top-row");
+    var back = el("button", "btn-back", "&larr; Back");
+    back.onclick = function () { state.screen = "inputs"; render(); };
+    topRow.appendChild(back);
+    app.appendChild(topRow);
+
+    app.appendChild(el("div", "section-tag", "Section 3 of 3"));
+    app.appendChild(el("h2", "", "If this were real, what would you do with it?"));
+    app.appendChild(el("p", "section-intro", "Not your full plan. Just the first honest thought about where your Net Remaining should go."));
+
+    var field = el("div", "field-group");
+    var ta = el("textarea", "field-input");
+    ta.placeholder = "Write it here...";
+    ta.value = state.reflection;
+    ta.oninput = function (e) { state.reflection = e.target.value; };
+    field.appendChild(ta);
+    app.appendChild(field);
+
+    var next = el("button", "btn-primary", "See my results");
+    next.onclick = function () { state.screen = "closing"; render(); };
+    app.appendChild(next);
+  }
+
+  function renderClosing() {
+    var r = state.reveal;
+    app.appendChild(el("div", "eyebrow", "Your Preview"));
+    app.appendChild(el("h1", "", "Your rate is <em>" + r.rate + "%</em>."));
+
+    var summary = el("div", "closing-summary");
+    summary.innerHTML =
+      "On " + fmt(r.income) + " a month, with a surplus of <strong>" + fmt(r.surplus) + "</strong>, this system puts <strong>" + fmt(r.investment) + "</strong> to work automatically, leaving <strong>" + fmt(r.netRemaining) + "</strong> as unassigned capital.";
+    app.appendChild(summary);
+
+    var ctaBlock = el("div", "cta-block");
+    ctaBlock.appendChild(el("p", "cta-line", "This is called Surplus-First Progressive Allocation, and it is the exact logic Financial OS runs automatically, every month, recalculating the moment your income changes."));
+
+    var link = document.createElement("a");
+    link.href = FINANCIALOS_URL; link.target = "_blank"; link.rel = "noopener noreferrer";
+    var ctaBtn = el("button", "btn-primary", "See Financial OS");
+    link.appendChild(ctaBtn);
+    ctaBlock.appendChild(link);
+
+    var note = el("div", "secondary-note");
+    note.innerHTML = 'Want a more personalised experience? <a href="' + BLUEPRINT_URL + '">Book the Income Blueprint &rarr;</a>';
+    ctaBlock.appendChild(note);
+    app.appendChild(ctaBlock);
+
+    var footerRow = el("div", "footer-row");
+    var restart = el("button", "btn-ghost", "Start over");
+    restart.onclick = function () {
+      state = { screen: "intro", income: "", expensePct: "", revealed: false, revealStage: "rate", reveal: {}, reflection: "" };
+      render();
+    };
+    footerRow.appendChild(restart);
+    app.appendChild(footerRow);
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
