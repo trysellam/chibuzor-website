@@ -1,0 +1,133 @@
+---
+// src/pages/services.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Live discount window check, calculated fresh on every request.
+// Window: the last 6 days of the current month, plus the first 5 days of the new month.
+// Built this way (based on the month's actual length) so it works correctly
+// regardless of whether the month has 28, 29, 30, or 31 days, no manual updates ever needed.
+const now = new Date();
+const day = now.getDate();
+const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+const inDiscountWindow = day > (lastDayOfMonth - 6) || day <= 5;
+
+const blueprintPrice = inDiscountWindow ? 35 : 50;
+const blueprintLink = inDiscountWindow
+  ? "https://flutterwave.com/pay/tib35"
+  : "https://flutterwave.com/pay/tib50";
+
+const DISCOVERY_CALL_URL = "https://calendar.app.google/Sd9xBX5MjDQH9FgL8";
+const STANDARD_EMAIL = "mailto:hello.chibuzormordi@gmail.com?subject=Revenue%20OS%20Standard";
+---
+
+<BaseLayout
+  title="Services | Chibuzor Mordi, The Income Architect"
+  description="The ladder, in full. Four ways to work with me, from a single session to a fully built system."
+>
+  <div class="wrap breadcrumb">
+    <a href="/">Home</a> <span>&rsaquo;</span> <span class="current">Services</span>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>The ladder, in full.</h1>
+      <p class="sub">Four ways to work with me, from a single session to a fully built system.</p>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="wrap cards-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <h2>The Income Blueprint</h2>
+          {inDiscountWindow && <span class="badge discount">Discount Week</span>}
+        </div>
+        <p class="desc">One session. I map your income and hand you a written plan, a specific plan for what to fix first in your pricing, your offer, and how clients find you, and why.</p>
+        <div class="price-row">
+          {inDiscountWindow
+            ? <><span class="price-old">$50</span><span class="price">${blueprintPrice}</span></>
+            : <span class="price">${blueprintPrice}</span>
+          }
+        </div>
+        <a href={blueprintLink} target="_blank" rel="noopener noreferrer" class="btn-primary">Pay &amp; Book Your Session &rarr;</a>
+      </div>
+
+      <div class="card featured">
+        <div class="card-head">
+          <h2>Revenue OS, Standard</h2>
+          <span class="badge popular">Most Popular</span>
+        </div>
+        <p class="desc">Six weeks. Six sessions built around quality, not quantity. Weeks one and two diagnose and design your systems. Weeks three and four build them, one session builds, the next reviews and corrects. Weeks five and six put them to work, then close with a full handoff, what was built, what to watch, what comes next.</p>
+        <div class="price-row"><span class="price">$500</span></div>
+        <a href={STANDARD_EMAIL} class="btn-primary">Email to Get Started &rarr;</a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2>Revenue OS, Scale</h2>
+        </div>
+        <p class="desc">The same foundation as Standard, with automation layered in so the system runs without you once the sessions end.</p>
+        <div class="price-row"><span class="price">Starts at $1,200</span></div>
+        <a href={DISCOVERY_CALL_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">Book a Discovery Call &rarr;</a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2>The Income Engine</h2>
+        </div>
+        <p class="desc">A done-for-you automation build for client-facing service businesses, lead capture, qualification, follow-up, and reporting, running quietly in the background.</p>
+        <div class="price-row"><span class="price">Starts at $1,500</span></div>
+        <a href={DISCOVERY_CALL_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">Book a Discovery Call &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 20px 0 0; font-size: 13px; color: var(--warm-white-muted); }
+  .breadcrumb a { text-decoration: none; color: var(--warm-white-dim); }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb .current { color: var(--gold); }
+
+  .hero { padding: 56px 0 48px; text-align: center; border-bottom: 1px solid var(--charcoal-mid); }
+  .hero h1 { font-size: clamp(28px, 4.5vw, 40px); margin-bottom: 14px; }
+  .hero .sub { font-size: 15px; color: var(--warm-white-dim); }
+
+  .cards { padding: 56px 0 72px; }
+  .cards-grid { display: flex; gap: 22px; flex-wrap: wrap; }
+
+  .card {
+    flex: 1; min-width: 260px; background: var(--charcoal-light); border: 1px solid var(--charcoal-mid);
+    border-radius: 4px; padding: 28px; display: flex; flex-direction: column;
+  }
+  .card.featured { border-color: var(--gold); }
+
+  .card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+  .card-head h2 { font-size: 19px; line-height: 1.3; }
+
+  .badge {
+    flex-shrink: 0; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 4px 10px; border-radius: 12px; white-space: nowrap; margin-top: 3px;
+  }
+  .badge.popular { background: var(--gold); color: var(--charcoal); }
+  .badge.discount { border: 1px solid var(--gold-dim); color: var(--gold); }
+
+  .desc { font-size: 13.5px; color: var(--warm-white-dim); line-height: 1.65; margin-bottom: 22px; flex-grow: 1; }
+
+  .price-row { margin-bottom: 20px; }
+  .price { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); }
+  .price-old { font-size: 15px; color: var(--warm-white-muted); text-decoration: line-through; margin-right: 10px; }
+
+  .btn-primary {
+    display: inline-block; text-align: center; background: var(--gold); color: var(--charcoal);
+    font-weight: 600; font-size: 13.5px; padding: 14px 20px; border-radius: 3px; text-decoration: none;
+  }
+  .card:not(.featured) .btn-primary { background: transparent; border: 1.5px solid var(--warm-white-muted); color: var(--warm-white); }
+  .card:not(.featured) .btn-primary:hover { border-color: var(--gold); }
+
+  @media (max-width: 900px) {
+    .cards-grid { flex-direction: column; }
+  }
+</style>
