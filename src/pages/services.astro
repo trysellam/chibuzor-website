@@ -83,6 +83,13 @@ const STANDARD_EMAIL = "mailto:hello.chibuzormordi@gmail.com?subject=Revenue%20O
 
     </div>
   </section>
+
+  <section class="reinvestment-note">
+    <div class="wrap">
+      <p>Every quarter, I set aside 10% of what LinkedIn generates to help another African professional get ahead. A laptop. A course. Whatever moves their work forward.</p>
+      <a href="/reinvestment" class="link">Learn about the Creator Reinvestment Initiative &rarr;</a>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -130,4 +137,15 @@ const STANDARD_EMAIL = "mailto:hello.chibuzormordi@gmail.com?subject=Revenue%20O
   @media (max-width: 900px) {
     .cards-grid { flex-direction: column; }
   }
+
+  .reinvestment-note {
+    padding: 40px 0 64px; text-align: center; border-top: 1px solid var(--charcoal-mid);
+  }
+  .reinvestment-note p {
+    font-size: 13.5px; color: var(--warm-white-muted); max-width: 480px; margin: 0 auto 10px; line-height: 1.65;
+  }
+  .reinvestment-note .link {
+    font-size: 13px; color: var(--gold); text-decoration: none;
+  }
+  .reinvestment-note .link:hover { text-decoration: underline; }
 </style>
