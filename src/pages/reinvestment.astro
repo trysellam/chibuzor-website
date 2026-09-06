@@ -1,0 +1,111 @@
+---
+// src/pages/reinvestment.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const APPLICATION_FORM_URL = "https://forms.gle/mJJP8MSU8i2tZzjL6";
+---
+
+<BaseLayout
+  title="The Creator Reinvestment Initiative | Chibuzor Mordi"
+  description="Every quarter, I set aside a share of what my work generates to help another African professional get ahead."
+>
+  <div class="wrap breadcrumb">
+    <a href="/">Home</a> <span>&rsaquo;</span> <span class="current">Creator Reinvestment Initiative</span>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">For African Professionals</span>
+      <h1>The Creator Reinvestment Initiative.</h1>
+      <p class="sub">Every quarter, I set aside 10% of what LinkedIn generates to help another African professional get ahead. A laptop. A course. Whatever moves their work forward.</p>
+    </div>
+  </section>
+
+  <section class="status">
+    <div class="wrap">
+      <div class="status-block">
+        <span class="status-tag">Where this stands right now</span>
+        <p>This has not launched yet. There is no recipient so far. The aim is to award the first one in the last quarter of this year.</p>
+        <p>Applications are open now, ahead of that first selection, not after it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <div class="wrap">
+      <h2>How it works</h2>
+
+      <div class="step-row">
+        <span class="step-num">1</span>
+        <div>
+          <h3>Apply anytime</h3>
+          <p>The application stays open continuously. There is no deadline to catch, no window to miss.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <span class="step-num">2</span>
+        <div>
+          <h3>Reviewed each quarter</h3>
+          <p>At the end of every quarter, applications are reviewed and a recipient is selected and announced.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <span class="step-num">3</span>
+        <div>
+          <h3>Exclusive to African professionals</h3>
+          <p>This initiative exists for African professionals specifically, not a general audience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>If this could genuinely move your work forward, apply.</h2>
+      <p>Honest applications only. There is nothing to lose by being direct about what you need and why.</p>
+      <a href={APPLICATION_FORM_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">Apply Now &rarr;</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: 20px 0 0; font-size: 13px; color: var(--warm-white-muted); }
+  .breadcrumb a { text-decoration: none; color: var(--warm-white-dim); }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb .current { color: var(--gold); }
+
+  .hero { padding: 64px 0 48px; text-align: center; border-bottom: 1px solid var(--charcoal-mid); }
+  .eyebrow {
+    display: inline-block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--gold-dim); border-radius: 20px; padding: 6px 16px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(28px, 4.5vw, 40px); max-width: 600px; margin: 0 auto 18px; }
+  .hero .sub { font-size: 15px; color: var(--warm-white-dim); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+  .status { padding: 40px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .status-block {
+    background: var(--charcoal-light); border: 1px solid var(--gold-dim); border-radius: 4px; padding: 24px 28px;
+  }
+  .status-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); display: block; margin-bottom: 10px; }
+  .status-block p { font-size: 14.5px; color: var(--warm-white-dim); line-height: 1.7; margin-bottom: 10px; }
+  .status-block p:last-child { margin-bottom: 0; }
+
+  .how-it-works { padding: 56px 0; border-bottom: 1px solid var(--charcoal-mid); }
+  .how-it-works h2 { font-size: 24px; margin-bottom: 28px; }
+  .step-row { display: grid; grid-template-columns: 40px 1fr; gap: 18px; padding: 22px 0; border-top: 1px solid var(--charcoal-mid); }
+  .step-row:last-child { border-bottom: 1px solid var(--charcoal-mid); }
+  .step-num {
+    width: 32px; height: 32px; border: 1px solid var(--gold-dim); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; color: var(--gold); font-size: 13px;
+  }
+  .step-row h3 { font-size: 16px; margin-bottom: 6px; }
+  .step-row p { font-size: 14px; color: var(--warm-white-dim); line-height: 1.6; }
+
+  .cta { padding: 64px 0; text-align: center; }
+  .cta h2 { font-size: 24px; max-width: 480px; margin: 0 auto 14px; }
+  .cta p { font-size: 14px; color: var(--warm-white-dim); max-width: 440px; margin: 0 auto 28px; }
+  .btn-primary {
+    display: inline-block; background: var(--gold); color: var(--charcoal); font-weight: 600;
+    font-size: 14px; padding: 15px 30px; border-radius: 3px; text-decoration: none;
+  }
+</style>
