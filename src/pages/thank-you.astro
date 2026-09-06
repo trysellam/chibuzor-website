@@ -1,0 +1,49 @@
+---
+// src/pages/thank-you.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="You're In | Chibuzor Mordi, The Income Architect"
+  description="Payment confirmed. Here's what happens next."
+>
+  <section class="confirm">
+    <div class="wrap">
+      <span class="eyebrow">Payment Confirmed</span>
+      <h1>You're in.</h1>
+      <p class="lede">Your session isn't scheduled automatically. I do that part myself, personally, once I've seen your payment come through.</p>
+
+      <div class="detail-block">
+        <h3>What happens next</h3>
+        <p>I'll email you within 24 hours from <strong>hello.chibuzormordi@gmail.com</strong> to find a time that works for the session itself.</p>
+        <p>If it's been longer than that and you haven't heard from me, check your spam folder first, then reply directly to that address, sometimes emails land somewhere strange.</p>
+      </div>
+
+      <p class="closing">Thank you for trusting me with this. I'll speak to you soon.</p>
+      <p class="signature">&mdash; Chibuzor Mordi, The Income Architect</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .confirm { padding: 96px 0; text-align: center; }
+  .confirm .wrap { max-width: 560px; }
+  .eyebrow {
+    display: inline-block; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--gold-dim); border-radius: 20px; padding: 6px 16px; margin-bottom: 24px;
+  }
+  h1 { font-size: clamp(32px, 5vw, 44px); margin-bottom: 20px; }
+  .lede { font-size: 16px; color: var(--warm-white-dim); line-height: 1.7; margin-bottom: 40px; }
+
+  .detail-block {
+    background: var(--charcoal-light); border: 1px solid var(--charcoal-mid); border-radius: 4px;
+    padding: 28px 32px; text-align: left; margin-bottom: 36px;
+  }
+  .detail-block h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 14px; }
+  .detail-block p { font-size: 14.5px; color: var(--warm-white-dim); line-height: 1.7; margin-bottom: 12px; }
+  .detail-block p:last-child { margin-bottom: 0; }
+  .detail-block strong { color: var(--warm-white); }
+
+  .closing { font-size: 15px; color: var(--warm-white-dim); margin-bottom: 6px; }
+  .signature { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 15px; }
+</style>
