@@ -23,6 +23,10 @@ const GA_MEASUREMENT_ID = "G-EL2FTCK2PQ";
   <title>{title}</title>
   <meta name="description" content={description} />
 
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -43,7 +47,10 @@ const GA_MEASUREMENT_ID = "G-EL2FTCK2PQ";
   <nav class="site-nav">
     <div class="wrap">
       <a href="/" class="nav-name">Chibuzor <em>Mordi</em></a>
-      <div class="nav-links">
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a href="/professionals">For Professionals</a>
         <a href="/businesses">For Businesses</a>
         <a href="/about">About</a>
@@ -51,6 +58,26 @@ const GA_MEASUREMENT_ID = "G-EL2FTCK2PQ";
       </div>
     </div>
   </nav>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    if (toggle && links) {
+      toggle.addEventListener('click', () => {
+        const isOpen = links.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      });
+      links.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          links.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  </script>
 
   <div class="draw-line" aria-hidden="true">
     <span class="joint j1"></span>
@@ -145,6 +172,29 @@ const GA_MEASUREMENT_ID = "G-EL2FTCK2PQ";
     transition: color 0.2s ease;
   }
   .nav-links a:hover { color: var(--gold); }
+
+  .nav-toggle {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    background: transparent; border: none; padding: 8px; cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block; width: 22px; height: 1.5px; background: var(--warm-white-dim); transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  @media (max-width: 640px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: var(--charcoal-light); border-bottom: 1px solid var(--charcoal-mid);
+      max-height: 0; overflow: hidden; transition: max-height 0.25s ease;
+    }
+    .nav-links.open { max-height: 300px; }
+    .nav-links a { padding: 16px 32px; border-top: 1px solid var(--charcoal-mid); }
+    .site-nav .wrap { position: relative; }
+  }
 
   .site-footer {
     border-top: 1px solid var(--charcoal-mid);
