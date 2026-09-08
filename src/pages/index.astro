@@ -57,9 +57,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="wrap">
       <h2>A system is not a document.</h2>
       <p>It is what happens the moment money comes in, a lead arrives, or a decision has to be made without you standing there.</p>
-      <div class="viz-placeholder">
-        <!-- TODO: the actual systems visualization design is still an open item, not built yet -->
-        Systems visualization goes here once designed.
+      <div class="viz-diagram" aria-hidden="true">
+        <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+          <rect class="node-box n1" x="20" y="70" width="140" height="60" rx="3" />
+          <text class="node-label n1" x="90" y="105" text-anchor="middle">Money In</text>
+
+          <path class="connector c1" d="M 160 100 L 280 100" />
+
+          <rect class="node-box n2" x="280" y="55" width="140" height="90" rx="3" />
+          <text class="node-label n2" x="350" y="95" text-anchor="middle">The System</text>
+          <text class="node-sublabel n2" x="350" y="115" text-anchor="middle">Pricing. Tracking. Structure.</text>
+
+          <path class="connector c2" d="M 420 100 L 540 100" />
+
+          <rect class="node-box n3" x="540" y="70" width="140" height="60" rx="3" />
+          <text class="node-label n3" x="610" y="105" text-anchor="middle">A Decision, Made</text>
+        </svg>
       </div>
     </div>
   </section>
@@ -117,12 +130,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .systems-viz { padding: 64px 0; border-top: 1px solid var(--charcoal-mid); text-align: center; }
   .systems-viz h2 { font-size: 26px; margin-bottom: 14px; }
   .systems-viz p { color: var(--warm-white-dim); max-width: 480px; margin: 0 auto 32px; }
-  .viz-placeholder {
-    border: 1px dashed var(--charcoal-mid);
-    border-radius: 4px;
-    padding: 60px 20px;
-    color: var(--warm-white-muted);
-    font-size: 13px;
+  .viz-diagram { max-width: 640px; margin: 0 auto; }
+  .viz-diagram svg { width: 100%; height: auto; overflow: visible; }
+
+  .node-box {
+    fill: var(--charcoal-light); stroke: var(--gold-dim); stroke-width: 1.5;
+    opacity: 0; animation: nodeAppear 0.5s ease forwards;
+  }
+  .node-box.n1 { animation-delay: 0.1s; }
+  .node-box.n2 { animation-delay: 0.9s; }
+  .node-box.n3 { animation-delay: 1.7s; }
+
+  .node-label {
+    font-family: 'Playfair Display', serif; font-size: 15px; fill: var(--warm-white);
+    opacity: 0; animation: nodeAppear 0.5s ease forwards;
+  }
+  .node-label.n1 { animation-delay: 0.25s; }
+  .node-label.n2 { animation-delay: 1.05s; }
+  .node-label.n3 { animation-delay: 1.85s; }
+
+  .node-sublabel {
+    font-family: 'DM Sans', sans-serif; font-size: 10px; fill: var(--warm-white-muted);
+    opacity: 0; animation: nodeAppear 0.5s ease forwards; animation-delay: 1.2s;
+  }
+
+  .connector {
+    fill: none; stroke: var(--gold); stroke-width: 2; stroke-linecap: round;
+    stroke-dasharray: 130; stroke-dashoffset: 130; animation: drawConnector 0.6s ease forwards;
+  }
+  .connector.c1 { animation-delay: 0.55s; }
+  .connector.c2 { animation-delay: 1.35s; }
+
+  @keyframes nodeAppear { to { opacity: 1; } }
+  @keyframes drawConnector { to { stroke-dashoffset: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .node-box, .node-label, .node-sublabel { animation: none !important; opacity: 1 !important; }
+    .connector { animation: none !important; stroke-dashoffset: 0 !important; }
   }
 
   .closing { padding: 56px 0; border-top: 1px solid var(--charcoal-mid); }
