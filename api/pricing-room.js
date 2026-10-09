@@ -31,14 +31,21 @@ export default async function handler(req, res) {
       redirect: 'follow'
     });
 
-    const responseText = await response.text();
+const responseText = await response.text();
 
-    let result;
-    try {
-      result = JSON.parse(responseText);
-    } catch {
-      throw new Error('Apps Script returned an invalid response.');
-    }
+let result;
+try {
+  result = JSON.parse(responseText);
+} catch {
+  console.error('Apps Script response diagnostics:', {
+    status: response.status,
+    contentType: response.headers.get('content-type'),
+    finalUrl: response.url,
+    bodyPreview: responseText.slice(0, 300)
+  });
+
+  throw new Error('Apps Script returned an invalid response.');
+}
 
     if (!response.ok || !result.success) {
       throw new Error('Registration was not saved.');
